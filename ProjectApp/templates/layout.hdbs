@@ -1,0 +1,14 @@
+<head>
+	 <h3>{{setting "name"}}</h3>
+</head>
+  <button class='displayList'>Ticket List</button>
+	<button class='displayForm'>Single Ticket</button>
+  <button class='displayMultiCreate'>Create Bulk</button>
+  <button class='displayUpdate'>Update</button>
+  <button class='removeTicket'>Remove</button>
+<section data-main />
+<footer>
+  <a href="mailto:{{author.email}}">
+    {{author.name}}
+  </a>
+</footer>

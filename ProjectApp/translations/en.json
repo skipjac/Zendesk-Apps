@@ -1,0 +1,14 @@
+{
+  "app": {
+    "parameters" : {
+      "Custom_Field_ID" : {
+        "label": "Custom Field ID",
+        "helpText": "You can find the Custom Field ID on the ticket field eidt page"
+      }
+      
+      },
+    "description":  "Create Children tickets that all link back to a parent ticket.",
+    "name":         "Project Management"
+  },
+  "none": "Not currently in a Project"
+}

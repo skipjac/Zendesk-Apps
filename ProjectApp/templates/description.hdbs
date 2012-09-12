@@ -1,0 +1,5 @@
+<section data-main>
+  {{#createResult}}
+<div>{{id}} was created with external id {{external_id}}</div>
+  {{/createResult}}
+</section>

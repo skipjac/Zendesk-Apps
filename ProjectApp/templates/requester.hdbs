@@ -1,0 +1,40 @@
+<section data-main>
+	<div id='createtheticket'>
+		<ol>
+			<li>
+			    <label for="userName">Requester Name</label>
+					 <!-- <span STYLE="color: green; font-size: 10pt">Required</span> -->
+			     <input required placeholder="Enter Name of Reuquester" type="text" name="userName" id="userName" style="width: 196px" value="{{name}}"/>
+			</li>
+			<li>
+			    <label for="userEmail">Requester Email</label>
+					  <!-- <span STYLE="color: green; font-size: 10pt">Required</span> -->
+			     <input type="email" required placeholder="me@example.com" name="userEmail" id="userEmail" style="width: 196px" value="{{email}}"/>
+			</li>
+			<li>
+			<div class="select" style>
+			    <label for="zendeskSelect">Groups</label>
+			     <select id="zendeskSelect" name="zendeskSelect" onchange style="width: auto;">
+			          <option value="-">-</option>
+					  {{#each groups}}
+			          <option value="{{id}}">{{name}}</option>
+					  {{/each}}
+			     </select>
+			</li>
+			<li>
+			    <label for="userSub">Subject</label>
+					  <!-- <span STYLE="color: green; font-size: 10pt">Required</span> -->
+			     <input required placeholder="Enter Subject" type="text" name="userSub" id="userSub" style="width: 196px" value="{{subject}}"/>
+			</li>
+			
+			<li>
+		           <label for="ticketDesc">Description<label>
+		             <!-- <span STYLE="color: green; font-size: 10pt">Required</span> -->
+		         <textarea required="required" rows="10" name="ticketDesc" id="ticketDesc" style="width: 196px" placeholder="Please Describe the issue">{{desc}}</textarea>
+			</li>
+		
+	   <button class='submitSpoke'>Create Spoke Ticket</button>
+	   </ol>
+	   </div>
+   </div>
+</section>

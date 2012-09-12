@@ -1,0 +1,20 @@
+<section data-main>
+<div>
+  <ul>
+    {{#projects}}
+        <p>
+		<a href="#/tickets/{{id}}">Ticket {{id}}</a></br>
+		Status: {{status}}</br>
+		Type: {{type}}</br>
+		Assignee: {{assignee_id}}</br>
+		Group: {{group_id}}</br>
+        </p> 
+    {{/projects}}
+  </ul>
+
+  {{#unless projects.length}}
+    <p>{{t "none"}}}</p>
+  {{/unless}}
+
+</div>
+</section>
