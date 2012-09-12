@@ -8,7 +8,4 @@
   <button class='removeTicket'>Remove</button>
 <section data-main />
 <footer>
-  <a href="mailto:{{author.email}}">
-    {{author.name}}
-  </a>
 </footer>
