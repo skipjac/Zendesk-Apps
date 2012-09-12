@@ -1,0 +1,7 @@
+{
+  "app": {
+    "description":  "Conditional fields type I",
+    "name":         "Conditional Fields"
+  },
+  "none": "Not currently in a Project"
+}
