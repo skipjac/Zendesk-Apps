@@ -12,9 +12,9 @@
 			     <input type="email" required placeholder="me@example.com" name="userEmail" id="userEmail" style="width: 196px" value="{{email}}"/>
 			</li>
 			<li>
-			<div class="select" style>
+			<div class="select">
 			    <label for="zendeskSelect">Groups</label>
-			     <select id="zendeskSelect" name="zendeskSelect" onchange style="width: auto;">
+			     <select id="zendeskSelect" required name="zendeskSelect" onchange style="width: auto;">
 			          <option value="-">-</option>
 					  {{#each groups}}
 			          <option value="{{id}}">{{name}}</option>
@@ -33,7 +33,7 @@
 		         <textarea required="required" rows="10" name="ticketDesc" id="ticketDesc" style="width: 196px" placeholder="Please Describe the issue">{{desc}}</textarea>
 			</li>
 		
-	   <button class='submitSpoke'>Create Spoke Ticket</button>
+	   <button class='submitSpoke'>Create Single Ticket</button>
 	   </ol>
 	   </div>
    </div>

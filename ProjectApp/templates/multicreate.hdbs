@@ -14,7 +14,7 @@
 			<li>
 			<div class="select">
 			    <label for="zendeskSelect">Groups</label>
-			     <select id="zendeskSelect" name="zendeskSelect" onchange style="width: auto;" size="1" multiple>
+			     <select id="zendeskSelect" required name="zendeskSelect" onchange style="width: auto;" size="1" multiple>
 					  {{#each groups}}
 			          <option value="{{id}}">{{name}}</option>
 					  {{/each}}
