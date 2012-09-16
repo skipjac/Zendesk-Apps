@@ -9,7 +9,7 @@
       };
 
   return {
-    appID:  'https://github.com/zendesk/widgets/tree/master/ConditionalFieldsApp',
+    appID:  'https://github.com/skipjac/Zendesk-Apps/tree/master/RequiredFieldsApp',
     defaultState: 'loading',
     type2thing: '',
 
@@ -29,10 +29,8 @@
          });      
       if (notNull) {
         this.enableSave();
-        console.log('it worked');
       } else {
         this.disableSave();
-        console.log('sad face');
       }
     },
 
