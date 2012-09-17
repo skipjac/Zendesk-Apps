@@ -1,0 +1,7 @@
+{
+  "app": {
+    "description":  "This is a template to use",
+    "name":         "Template App"
+  },
+  "none": "example text"
+}
