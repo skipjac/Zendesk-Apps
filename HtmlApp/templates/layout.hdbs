@@ -1,0 +1,6 @@
+<head>
+	 <h3>{{setting "name"}}</h3>
+</head>
+<section data-main />
+<footer>
+</footer>
