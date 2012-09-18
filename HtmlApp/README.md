@@ -1,5 +1,5 @@
-Zendesk App Template
+Zendesk HTML App
 ==========
 
-Use this as a starting template to create new Zendesk apps
+This just a app to display HTML links in the ticket sidebar. Just edit the links.hdbs with the links you want to show.
 
