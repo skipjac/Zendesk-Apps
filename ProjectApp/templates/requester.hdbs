@@ -28,7 +28,7 @@
 			</li>
 			
 			<li>
-        <label><textarea required="required" rows="10" name="ticketDesc" id="ticketDesc" style="width: 196px" placeholder="Please Describe the issue">{{desc}}></textarea>Description</label>  
+        <label>Description<textarea required="required" rows="10" name="ticketDesc" id="ticketDesc" style="width: 196px" placeholder="Please Describe the issue">{{desc}}></textarea></label>  
 			</li>
 		<li>
 	   <button class='submitSpoke'>Create Single Ticket</button>
