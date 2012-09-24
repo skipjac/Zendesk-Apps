@@ -1,15 +1,27 @@
 <section data-main>
 <div>
   <ul>
-    {{#projects}}
-        <p>
-		<a href="#/tickets/{{id}}">Ticket {{id}}</a></br>
-		Status: {{status}}</br>
-		Type: {{type}}</br>
-		Assignee: {{assignee_id}}</br>
-		Group: {{group_id}}</br>
-        </p> 
-    {{/projects}}
+    {{#each projects}}
+    {{#selected}}
+    <h5>Parent</h5>
+    <p class='parent'>
+		  <a href="#/tickets/{{id}}">Ticket {{id}}</a></br>
+		  Status: {{status}}</br>
+		  Type: {{type}}</br>
+		  Assignee: {{assignee_id}}</br>
+		  Group: {{group_id}}</br>
+    </p> 
+    {{/selected}}
+    {{^selected}}
+    <p>
+		  <a href="#/tickets/{{id}}">Ticket {{id}}</a></br>
+		  Status: {{status}}</br>
+		  Type: {{type}}</br>
+		  Assignee: {{assignee_id}}</br>
+		  Group: {{group_id}}</br>
+    </p> 
+    {{/selected}}
+    {{/each}}
   </ul>
 
   {{#unless projects.length}}

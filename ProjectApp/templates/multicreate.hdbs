@@ -12,7 +12,7 @@
 			     <input type="email" required placeholder="me@example.com" name="userEmail" id="userEmail" style="width: 196px" value="{{email}}"/>
 			</li>
 			<li>
-			<div class="select">
+			<div class="select" required = "required">
 			    <label for="zendeskSelect">Groups</label>
 			     <select id="zendeskSelect" required name="zendeskSelect" onchange style="width: auto;" size="1" multiple>
 					  {{#each groups}}
@@ -27,12 +27,11 @@
 			</li>
 			
 			<li>
-		           <label for="ticketDesc">Description<label>
-		             <!-- <span STYLE="color: green; font-size: 10pt">Required</span> -->
-		         <textarea required="required" rows="10" name="ticketDesc" id="ticketDesc" style="width: 196px" placeholder="Please Describe the issue">{{desc}}</textarea>
+        <label><textarea required="required" rows="10" name="ticketDesc" id="ticketDesc" style="width: 196px" placeholder="Please Describe the issue">{{desc}}></textarea>Description</label>  
 			</li>
-		
+		<li>
 	   <button class='submitBulk'>Create Bulk Tickets</button>
+     </li>
 	   </ol>
 	   </div>
    </div>

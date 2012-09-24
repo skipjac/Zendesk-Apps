@@ -22,8 +22,10 @@
       if ((this.isSolvable === true) && !(_.include(this.whatIsSolved, item.status))) {
         this.isSolvable = false;
       }
-    }
-    this.ticketList.push({'id': '' + item.id + '', 'status': '' + item.status + '', 'type': '' + item.type + '', 'assignee_id' : '' + this.assigneeName(item.assignee_id) + '', 'group_id': '' + this.groupName(item.group_id) + ''});
+      this.ticketList.push({'id': '' + item.id + '', 'status': '' + item.status + '', 'type': '' + item.type + '', 'assignee_id' : '' + this.assigneeName(item.assignee_id) + '', 'group_id': '' + this.groupName(item.group_id) + '','selected': false});
+    } else {
+      this.ticketList.push({'id': '' + item.id + '', 'status': '' + item.status + '', 'type': '' + item.type + '', 'assignee_id' : '' + this.assigneeName(item.assignee_id) + '', 'group_id': '' + this.groupName(item.group_id) + '','selected': true});
+    }    
   };
   var displayProjectName = function() {
     return this.settings.Custom_Field_ID;
