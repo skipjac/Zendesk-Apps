@@ -12,6 +12,9 @@
 		  Group: {{group_id}}</br>
     </p> 
     {{/selected}}
+    {{/each}}
+    <h5>Children</h5>
+    {{#each projects}}
     {{^selected}}
     <p>
 		  <a href="#/tickets/{{id}}">Ticket {{id}}</a></br>
