@@ -1,0 +1,7 @@
+<div class="loading">
+  <section data-main>
+    <p>
+      {{t "none"}}
+    </p>
+  </section>
+</div>

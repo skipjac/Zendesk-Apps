@@ -1,0 +1,7 @@
+{
+  "app": {
+    "description":  "This opens a Salesforce search for the contract number set",
+    "name":         "Salesforce Look up  App"
+  },
+  "none": "No Contract Number set in ticket"
+}

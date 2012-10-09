@@ -1,0 +1,20 @@
+<section data-main>
+  <div id='links'>
+    <hr><br>
+    <form action="http://skipjack.info/?s={{searchCasper}}" method="post" target="_blank"> 
+         <input style="cursor: pointer;" name="search" value="Search skipjack: {{searchCasper}}" type="submit" size="30"/> 
+    </form>
+    <form name="ir">
+    <select name="menu">
+    <option value="http://www.infosniper.net/index.php?ip_address={{ip}}&map_source=1&overview_map=1&lang=1&map_type=1&zoom_level=7" target="_blank">Map this IP</option>
+    <option value="http://www.ip-adress.com/ip_tracer/{{ip}}">IP Whois Lookup</option>
+    <option value="https://support.zendesk.com/forums/1">Announcements</option>
+    <option value="https://www.google.com/search?q={{requestEmail}}">Lookup this {{requestEmail}} Gifts</option>
+    </select>
+    <input type="button" onClick="window.open(document.ir.menu.options[document.ir.menu.selectedIndex].value);" value="Go">
+    </form>
+    <p>
+    <p>&nbsp;</p>
+
+  </div>
+</section>
