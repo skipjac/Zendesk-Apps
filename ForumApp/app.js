@@ -53,7 +53,6 @@
     },
     searchString: function () {
       var query = this.$('#searchText').val();
-      console.log(query);
       this.forums.forEach(function (x) {
         x.queryString = query;
       });
