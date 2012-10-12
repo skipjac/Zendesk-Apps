@@ -3,7 +3,7 @@
     "parameters" : {
       "Custom_Field_ID" : {
         "label": "Custom Field ID",
-        "helpText": "You can find the Custom Field ID on the ticket field eidt page"
+        "helpText": "You can find the Custom Field ID on the ticket field edit page"
       }
       
       },
