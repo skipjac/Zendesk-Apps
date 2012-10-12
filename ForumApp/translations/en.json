@@ -1,0 +1,7 @@
+{
+  "app": {
+    "description":  "Creates a list of forums with links",
+    "name":         "Forum App"
+  },
+  "none": "example text"
+}

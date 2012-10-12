@@ -1,0 +1,23 @@
+<section data-main>
+  <div id="links">
+    {{#createResult}}
+    <div id="link"><a href='/forums/{{id}}'>{{name}} ({{count}})</a></div>
+    {{/createResult}}
+  </div>
+  <form name="search">
+    <ol>
+      <li>
+        <input required placeholder="Search" type="text" name="searchText" id="searchText" style="width: 196px" value="{{queryString}}"/>
+      </li>
+      <li>
+        <select id="forumSelect" required name="forumSelect" onchange style="width: auto;">
+          <option value="/categories/search?utf8=%26%23x2713%3B&query={{queryString}}&forum_id=0&commit=Search">-</option>
+          {{#each createResult}}
+          <option value="/categories/search?utf8=%26%23x2713%3B&query={{queryString}}&forum_id={{id}}&commit=Search">{{name}}</option>
+          {{/each}}
+        </select>
+      </li>
+    </ol>
+    <input type="button" onClick="window.open(document.search.forumSelect.options[document.search.forumSelect.selectedIndex].value);" value="Search">
+  </form>
+</section>
