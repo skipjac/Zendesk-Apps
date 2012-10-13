@@ -1,0 +1,24 @@
+
+  <div id="orgdetails">
+    <ul>
+        <li class="orgitem"><span>{{t "org.name"}}:</span> {{orgName}}</li>
+        <li class="orgitem"><span>{{t "org.open"}}:</span> {{orgOpen}}</li>
+        <li class="orgitem"><span>{{t "org.closed"}}:</span> {{orgSolved}}</li>
+        <li class="orgitem"><span>{{t "org.details"}}:</span> {{orgDetails}}</li>
+        <li class="orgitem"><span>{{t "org.notes"}}:</span> {{orgNotes}}</li>
+        <li class="orgitem"><span>{{t "org.domains"}}:</span>
+            <ul>
+            {{#each orgDomain}}
+            <li class="domainItem">{{this}}</li>
+            {{/each}}
+            </ul>
+        </li>
+        <li class="orgitem"><span>{{t "org.tags"}}:</span>
+            <ul>
+            {{#each orgTags}}
+            <li class="tagItem">{{this}}</li>
+            {{/each}}
+            </ul>
+        </li>
+    </ul>
+  </div>

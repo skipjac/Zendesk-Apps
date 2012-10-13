@@ -1,0 +1,16 @@
+{
+  "app": {
+    "description":  "Display requesters' org information",
+    "name":         "Organization App"
+  },
+  "none": "This user is not in a Organization",
+    "org": {
+        "name": "Name",
+        "domains": "Domain Names",
+        "details": "Details",
+        "notes": "Notes",
+        "tags": "Tags",
+        "open": "New/Open Tickets",
+        "closed": "Solved/Closed Tickets"
+}
+}
