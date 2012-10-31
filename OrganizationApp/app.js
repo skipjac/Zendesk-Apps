@@ -4,7 +4,7 @@
     appID:  'this could be anything',
     defaultState: 'loading',
     events: {
-//        'app.activated': 'userID',
+        'app.activated': 'userID',
         'ticket.requester.email.changed': 'userID',
         'getOrgData.done': 'orgDataProcess'
     }, //end events
@@ -38,8 +38,8 @@
         var openTickets, solvedTickets;
         if ( orgData.length > 0 ) {
             orgData.forEach( function (x) {
-                var orgSolvedTickets = '{"view":{"all":[{"field":"organization","operator":"is","value":' + x.id +'}],"any":[{ "operator": "greater_than", "value": "open", "field": "status" }],"output":{"columns":["id"],"sort_by":"updated_at"}}}';
-                var orgOpenTickets = '{"view":{"all":[{"field":"organization","operator":"is","value":' + x.id +'}],"any":[{ "operator": "less_than", "value": "solved", "field": "status" }],"output":{"columns":["id"],"sort_by":"updated_at"}}}';
+              var orgSolvedTickets = '{"view":{"all":[{"field":"organization","operator":"is","value":' + x.id +'}],"any":[{ "operator": "greater_than", "value": "open", "field": "status" }],"output":{"columns":["id"],"sort_by":"updated_at"}}}';
+              var orgOpenTickets = '{"view":{"all":[{"field":"organization","operator":"is","value":' + x.id +'}],"any":[{ "operator": "less_than", "value": "solved", "field": "status" }],"output":{"columns":["id"],"sort_by":"updated_at"}}}';
                 this.ajax('getOrgTicketCount', orgOpenTickets).done( function(data) {
                     openTickets = data.count;
                     this.ajax('getOrgTicketCount', orgSolvedTickets).done( function(data) {
@@ -51,7 +51,7 @@
         } else {
             this.switchTo('noOrg', {});
         }
-    },    
+    },
     displayReuslts: function (x, openCount, solveCount) {
         this.switchTo('withorg', {
             orgName: x.name,
