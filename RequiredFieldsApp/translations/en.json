@@ -2,5 +2,8 @@
   "app": {
     "description":  "Agent required fields on update",
     "name":         "Required fields"
-  }
+    },
+    "fields": {
+      "more": "There are fields still required to be filled out before submit"
+    }
 }

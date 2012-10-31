@@ -1,12 +1,4 @@
 (function(){
-  var projectRequest = ['280865'],
-      otherHelpesk = ['279466'],
-      hideAll = [].concat(projectRequest, otherHelpesk),
-      moodFieldMap = {
-        cat:[].concat(projectRequest),
-        dog:[].concat(otherHelpesk),
-        dolphin: [].concat(projectRequest, otherHelpesk)
-      };
 
   return {
     appID:  'https://github.com/skipjac/Zendesk-Apps/tree/master/RequiredFieldsApp',
@@ -15,7 +7,9 @@
 
     events: {
       'app.activated': 'setValue',
-      'ticket.custom_field_21631456.changed': 'typeII'
+      'ticket.custom_field_21631456.changed': 'typeII',
+      'ticket.custom_field_21613267.changed': 'typeII',
+      'ticket.custom_field_280865.changed': 'typeII'
     }, //end events
 
     typeII: function(){
@@ -24,18 +18,17 @@
       var thirdField = this.getFieldValue(this.ticket().customField('custom_field_280865'));
       var checkedFields = [firstField, secondField, thirdField];
       var notNull = _.all(checkedFields, function (value) {
-         console.log(value);
          return value;
          });      
       if (notNull) {
         this.enableSave();
       } else {
+        services.notify(this.I18n.t('fields.more'), 'error');
         this.disableSave();
       }
     },
 
     setValue: function() {
-      //console.log('activated', arguments);
       this.typeII();
     },
     getFieldValue: function (fieldValue) { 
@@ -45,17 +38,6 @@
         } else {
           return '';
         }
-      },
-    hide: function(fields){
-      fields.forEach(function(field) {
-        this.ticketFields('custom_field_' + field).hide();
-      }, this);
-    },
-
-    show: function(fields) {
-      fields.forEach(function(field) {
-        this.ticketFields('custom_field_' + field).show();
-      }, this);
-    }
-  };
+      }
+  }; //end of first return
 }());
