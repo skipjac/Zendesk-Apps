@@ -1,0 +1,21 @@
+{
+    "author": {
+		"name" :"Skip Moore",
+	    "email": "skip.moore@zendesk.com"
+     },
+     "parameters": [{
+       "name": "totaltime",
+       "type": "text",
+       "required": true  
+       }, 
+       {
+         "name": "timehistory",
+         "type": "text",
+         "required": true  
+       }],
+	 "frameworkVersion": "0.5",
+	"location":"ticket_sidebar",
+   "defaultLocale": "en",
+   "private": true,
+   "singleInstall": true
+}

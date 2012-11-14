@@ -1,0 +1,6 @@
+<section data-main>
+  <form id="time-tracker">
+    <label>{{t "date"}}<input type="date" id="add_date" required /></label>
+    <label>{{t "time"}}<input type="text" id="add_time" name="add_time" pattern="{{validation}}" placeholder="HH:MM" required /></label>
+  </form>
+</section>

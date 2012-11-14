@@ -1,0 +1,19 @@
+{
+  "app": {
+    "parameters" : {
+      "totaltime": {
+        "label": "Time Field",
+        "helpText": "Place the field ID to store the total time in"
+        },
+        "timehistory": {
+          "label" : "History Field",
+          "helpText": "Place the field ID to store history of recorded time"
+        }
+    },
+    "description":  "This is a simple time tracker that requires Agents to place the number hours and minutes they worked before letting them them update ticket. ",
+    "name":         "Template App"
+  },
+  "none": "example text",
+  "time": "Enter time worked",
+  "date": "Enter date work was done"
+}
