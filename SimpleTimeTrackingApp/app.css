@@ -1,8 +1,8 @@
-  .accounts_app h3 {
+  accounts_app h3 {
     line-height: 30px;
   }
 
-  .accounts_app .logo {
+  accounts_app .logo {
     background: transparent  app-asset-url("logo-small.png") no-repeat;
     background-size: 25px 25px;
     float: right;
