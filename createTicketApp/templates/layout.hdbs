@@ -1,0 +1,15 @@
+<html>
+<head>
+</head>
+<body>
+<div class="accounts_app">
+  <div>
+   <h3>{{setting "name"}} <span class="logo"></span></h3>
+  </div>
+  <hr/>
+<section data-main>
+	 <button class='displayForm'>Create Spoke Ticket</button>
+</section>
+</div>
+</body>
+<html>

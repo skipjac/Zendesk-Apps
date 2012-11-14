@@ -1,0 +1,6 @@
+{
+  "app": {
+    "description":  "Create a ticket in a Enterprise Spoke account from the Hub",
+    "name":         "Create a Spoke ticket"
+  }
+}
