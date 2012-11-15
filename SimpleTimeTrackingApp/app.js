@@ -35,7 +35,6 @@
       var timeField = displayTime.call(this);
       var historyField = displayHistory.call(this);
       this.haveRequester();
-      this.disableSave();
       this.ticketFields('custom_field_' + timeField +'').disable();
       this.ticketFields('custom_field_' + historyField +'').disable();
       this.ajax('getTicketField', timeField);
@@ -43,8 +42,10 @@
     haveRequester: function() {
       var timeField = displayTime.call(this);
       var historyField = displayHistory.call(this);
-      var requesterEmail = this.ticket().requester() && this.ticket().requester().email();
-      if ( requesterEmail === null ) { return; }
+      var requesterEmail = this.ticket().id() && this.ticket().requester().email();
+      console.log(requesterEmail);
+      if ( requesterEmail === null || requesterEmail === undefined) { return; }
+      this.disableSave();
       this.loadedValue = this.ticket().customField('custom_field_' + timeField +'');
       this.loadedHistory = this.ticket().customField('custom_field_' + historyField +'') || '';
       this.switchTo('form', {
