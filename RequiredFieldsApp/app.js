@@ -5,20 +5,20 @@
     defaultState: 'loading',
 
     events: {
-      'app.activated': 'setValue',
-      'ticket.custom_field_21631456.changed': 'typeII',
-      'ticket.custom_field_21613267.changed': 'typeII',
-      'ticket.custom_field_280865.changed': 'typeII'
+      'app.activated': 'toggleSave',
+      'ticket.custom_field_21631456.changed': 'toggleSave',
+      'ticket.custom_field_21613267.changed': 'toggleSave',
+      'ticket.custom_field_280865.changed': 'toggleSave'
     }, //end events
 
-    typeII: function(){
+    toggleSave: function(){
       var firstField = this.getFieldValue(this.ticket().customField('custom_field_21631456'));
       var secondField = this.getFieldValue(this.ticket().customField('custom_field_21613267'));
       var thirdField = this.getFieldValue(this.ticket().customField('custom_field_280865'));
       var checkedFields = [firstField, secondField, thirdField];
       var notNull = _.all(checkedFields, function (value) {
          return value;
-         });      
+         });
       if (notNull) {
         this.enableSave();
       } else {
@@ -27,10 +27,7 @@
       }
     },
 
-    setValue: function() {
-      this.typeII();
-    },
-    getFieldValue: function (fieldValue) { 
+    getFieldValue: function (fieldValue) {
        var thereAreNulls = [undefined, null, '', 'no'];
         if(_.indexOf(thereAreNulls, fieldValue) === -1) {
           return fieldValue;
