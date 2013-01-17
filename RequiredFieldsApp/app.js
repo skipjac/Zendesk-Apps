@@ -3,7 +3,6 @@
   return {
     appID:  'https://github.com/skipjac/Zendesk-Apps/tree/master/RequiredFieldsApp',
     defaultState: 'loading',
-    type2thing: '',
 
     events: {
       'app.activated': 'setValue',
