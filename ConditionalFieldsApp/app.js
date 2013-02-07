@@ -1,13 +1,13 @@
 (function(){
-  var fieldToToggleOne = 'custom_field_280865',
-      fieldToToggleTwo = 'custom_field_279466',
+  var fieldGroupOne = [ 'custom_field_280865' ],
+      fieldGroupTwo = [ 'custom_field_279466' ],
 
-      allFieldsToToggle = [ fieldToToggleOne, fieldToToggleTwo ],
+      allFieldsToToggle = [].concat( fieldGroupOne, fieldGroupTwo ),
 
       fieldMap = {
-        cat:     [ fieldToToggleOne ],
-        dog:     [ fieldToToggleTwo ],
-        dolphin: [ fieldToToggleOne, fieldToToggleTwo ]
+        cat:     [].concat( fieldGroupOne ),
+        dog:     [].concat( fieldGroupTwo ),
+        dolphin: [].concat( fieldGroupOne, fieldGroupTwo )
       };
 
   return {
