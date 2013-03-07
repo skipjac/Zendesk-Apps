@@ -1,0 +1,12 @@
+<section data-main/>
+  <table class="table table-condensed">
+  		<tbody>
+  			{{#each lastestFiveArr}}
+  			<tr class="_tooltip" data-title="{{description}}">
+            <td><a href="#/tickets/{{id}}"><b>#{{id}}</b> {{subject}}</a></td>
+            <td><b>Status:</b> {{status}}</td>
+        	</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</section>

@@ -1,0 +1,11 @@
+{
+  "name": "Five Most Requester Tickets",
+  "author": {
+    "name": "Skip Moore",
+    "email": "skip.moore@zendesk.com"
+  },
+  "defaultLocale": "en",
+  "private": true,
+  "location": "ticket_sidebar",
+  "frameworkVersion": "0.5"
+}
