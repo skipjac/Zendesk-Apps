@@ -1,11 +1,16 @@
 {
     "author": {
 		"name" :"Skip Moore",
-	    "email": "skip@zendesk.com"
+	    "email": "skip.moore@zendesk.com"
      },
-	 "frameworkVersion": "0.5",
+    "parameters": [{
+       "name": "fieldMap",
+       "type": "multiline",
+       "required": true 
+       }],
+	"frameworkVersion": "0.5",
 	"location":"ticket_sidebar",
-   "defaultLocale": "en",
-   "private": true,
-   "singleInstall": true
+    "defaultLocale": "en",
+    "private": true,
+    "singleInstall": true
 }

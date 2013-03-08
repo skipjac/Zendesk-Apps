@@ -1,7 +1,19 @@
 {
   "app": {
-    "description":  "Conditional fields type I",
-    "name":         "Conditional Fields"
+    "description":  "Conditional Fields",
+    "name":         "Conditional Fields",
+     "parameters" : {
+     "fieldMap" : {
+     	"label": "Field mapping",
+     	"helpText": "Build a JSON object. The object should be in the format option_value: [array of field ids' to act on] for example: {'cat':[21875871,21865183,21745801], 'dog':[22103126,21613267], 'dolphin': [280865, 20295661], 'the_fish': []} "
+     }
+ }
   },
-  "none": "Not currently in a Project"
+  "global": {
+		"error": {
+			"title"     : "An error occurred",
+			"message"   : "Please try the previous action again.",
+			"data"      : "Ticket data could not be read."
+		}
+	}
 }
