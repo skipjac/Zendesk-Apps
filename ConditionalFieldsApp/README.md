@@ -11,11 +11,11 @@ In app.js you will see a javascript object called events:
     events: {
       'app.activated':  'init',
       'requiredProperties.ready': 'toggleFields',
-      'ticket.custom\_field\_21631456.changed': 'toggleFields'
+      'ticket.custom_field_21631456.changed': 'toggleFields'
     }
 ```
 
-The key ``` 'ticket.custom\_field\_21631456.changed' ``` is a watched field. For each watched field you need to add a new key and action. ``` 'toggleFields' ``` is the action to take when field 21631456 is changed, in this case if fires a function. In the function we get the value of 21631456 and using the JSON that was set in the settings page we get the array of fields to act upon. 
+The key ``` 'ticket.custom_field_21631456.changed' ``` is a watched field. For each watched field you need to add a new key and action. ``` 'toggleFields' ``` is the action to take when field 21631456 is changed, in this case if fires a function. In the function we get the value of 21631456 and using the JSON that was set in the settings page we get the array of fields to act upon. 
 
 The JSON object needs to look like: 
 
