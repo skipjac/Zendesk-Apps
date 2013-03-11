@@ -24,3 +24,5 @@ The JSON object needs to look like:
 ```
 
 Each key is a option value in the drop down field that is being watched, in this case 21631456. Each key needs an array of ticket field ID's to show when that value is selected. Please read up on the formating of JSON objects at [Introducing JSON](http://json.org/) . 
+
+![setttings page](http://skipjack.info/wp-content/gallery/tech/conditionalfields.png "Settings Page Example")
