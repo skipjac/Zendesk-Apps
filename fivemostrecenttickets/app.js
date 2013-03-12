@@ -52,30 +52,18 @@
 			if (this.currAttempt < this.MAX_ATTEMPTS) {
 				this.trigger('requiredProperties.ready');
 			} else {
-				//this.showError(this.I18n.t('global.error.title'), this.I18n.t('global.error.data'));
+				services.notify(this.I18n.t('global.error.data'), 'error');
 			}
 		},
-		validateRequiredProperty: function(property) {
-			var parts = property.split('.');
-			var part = '', obj = this;
-
-			while (parts.length) {
-				part = parts.shift();
-				try {
-					obj = obj[part]();
-				} catch (e) {
-					return false;
-				}
-				// check if property is invalid
-				if (parts.length > 0 && !_.isObject(obj)) {
-					return false;
-				}
-				// check if value returned from property is invalid
-				if (parts.length === 0 && (_.isNull(obj) || _.isUndefined(obj) || obj === '' || obj === 'no')) {
-					return false;
-				}
-			}
-			return true;
-		}
+    objectAt: function(path) {
+      return _.inject( path.split('.'), function(self, segment) {
+        console.log(self);
+        if (self == null) { return false; }
+        return self[segment];
+      }, this);
+    },
+    validateRequiredProperty: function(propertyPath) {
+      return this.objectAt(propertyPath) != null;
+    }
 	};
 }());

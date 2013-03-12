@@ -2,5 +2,12 @@
   "app": {
     "description":  "Display the five most recent tickets the requester has submited",
     "name":         "Five most recent"
-  }
+  },
+  	"global": {
+		"error": {
+			"title"     : "An error occurred",
+			"message"   : "Please try the previous action again.",
+			"data"      : "Ticket data could not be read."
+		}
+	}
 }
