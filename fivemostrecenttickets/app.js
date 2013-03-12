@@ -1,5 +1,6 @@
 (function() {
 	return {
+    //
 		currAttempt : 0,
 		MAX_ATTEMPTS : 20,
 		events: {
