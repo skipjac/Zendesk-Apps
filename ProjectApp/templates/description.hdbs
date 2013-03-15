@@ -1,5 +1,5 @@
 <section data-main>
   {{#createResult}}
-<div>{{id}} was created with external id {{external_id}}</div>
+<div><a href="#/tickets/{{id}}"><b>#{{id}}</b></a> was created with {{external_id}}</div>
   {{/createResult}}
 </section>

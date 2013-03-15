@@ -1,32 +1,32 @@
 <section data-main>
 <div>
-  <ul>
+   <table class="table table-condensed">
     {{#each projects}}
     {{#selected}}
     <h5>Parent</h5>
-    <p class='parent'>
-		  <a href="#/tickets/{{id}}">Ticket {{id}}</a></br>
-		  Status: {{status}}</br>
-		  Type: {{type}}</br>
-		  Assignee: {{assignee_id}}</br>
-		  Group: {{group_id}}</br>
-    </p> 
+    <table class="table table-condensed">
+      <tbody>
+        <tr class="_tooltip" data-title="Type: {{type}} Assignee: {{assignee_id}} Group: {{group_id}}">
+          <td><a href="#/tickets/{{id}}"><b>#{{id}}</b> {{subject}}</a></td>
+          <td><b>Status:</b> {{status}}</td>
+        </tr>
     {{/selected}}
     {{/each}}
+      <tbody>
+    </table>
     <h5>Children</h5>
     {{#each projects}}
     {{^selected}}
-    <p>
-		  <a href="#/tickets/{{id}}">Ticket {{id}}</a></br>
-		  Status: {{status}}</br>
-		  Type: {{type}}</br>
-		  Assignee: {{assignee_id}}</br>
-		  Group: {{group_id}}</br>
-    </p> 
+    <table class="table table-condensed">
+      <tbody>
+        <tr class="_tooltip" data-title="Type: {{type}} Assignee: {{assignee_id}} Group: {{group_id}}">
+          <td><a href="#/tickets/{{id}}"><b>#{{id}}</b> {{subject}}</a></td>
+          <td><b>Status:</b> {{status}}</td>
+        </tr>
     {{/selected}}
     {{/each}}
-  </ul>
-
+      <tbody>
+    </table>
   {{#unless projects.length}}
     <p>{{t "none"}}}</p>
   {{/unless}}

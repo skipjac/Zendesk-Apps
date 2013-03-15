@@ -1,31 +1,30 @@
 (function(){
-  //helper function to build new objects from returned JSON requests, thank you James
-  //you pass in the object you want to use the function you will use and the context which is usally this
-  function objectIteration(obj, fn, context) {
-    Object.keys(obj).forEach(function(key) {
-      fn.call(context, key, obj[key]);
-    });
-  }
   //build a group object for looking up a group name from id
-  var buildGroupList = function(data, item){ 
+  var buildGroupList = function(item){ 
     this.groups[item.id] = item.name;
     //build an array for the ticket submit pages to create dropdown list
-    this.groupDrop.push({'id': '' + item.id + '', 'name': ''+ item.name +''});
+    this.groupDrop.push({'label': '' + item.name + '', 'value': ''+ item.id +''});
   };
   //build a agent object for looking up a agent name from id
-  var buildAgentList = function(data, item){
+  var buildAgentList = function(item){
     this.assignees[item.id] = item.name;
   };
   //build a list of tickets in the project
-  var buildTicketList = function(data, item) {
-    if (_.indexOf(item.tags, 'project_child') !== -1){
+  var buildTicketList = function(item) {
+    //push a objects into a array for the ticket list page
+    var list = {'id': '' + item.id + '', 'status': '' + item.status + '', 'type': '' + item.type + '', 'assignee_id' : '' + this.assigneeName(item.assignee_id) + '', 'group_id': '' + this.groupName(item.group_id) + '', 'subject': '' + item.subject};
+    var hasProjectChildTag = _.include(item.tags, 'project_child');
+    if (hasProjectChildTag){
       if ((this.isSolvable === true) && !(_.include(this.whatIsSolved, item.status))) {
         this.isSolvable = false;
       }
-      this.ticketList.push({'id': '' + item.id + '', 'status': '' + item.status + '', 'type': '' + item.type + '', 'assignee_id' : '' + this.assigneeName(item.assignee_id) + '', 'group_id': '' + this.groupName(item.group_id) + '','selected': false});
+      //if the ticket is a child ticket set the selected to false
+      list.selected = !hasProjectChildTag;
     } else {
-      this.ticketList.push({'id': '' + item.id + '', 'status': '' + item.status + '', 'type': '' + item.type + '', 'assignee_id' : '' + this.assigneeName(item.assignee_id) + '', 'group_id': '' + this.groupName(item.group_id) + '','selected': true});
-    }    
+      // selected is true if the ticket is the parent 
+      list.selected = true;
+    }
+    this.ticketList.push(list);
   };
   var displayProjectName = function() {
     return this.settings.Custom_Field_ID;
@@ -34,6 +33,8 @@
     appID:  'https://github.com/zendesk/widgets/tree/master/ProjectApp',
     defaultState: 'list',
     name: '',
+    prependSubject: '',
+    appendSubject: '',
     groups: {},
 		assignees: {},
 		groupDrop: [],
@@ -96,6 +97,12 @@
           contentType: 'application/json'
         };
       },
+      autocompleteRequester: function(email){
+        return {
+          url: '/api/v2/users/autocomplete.json?name=' + email,
+          type: 'POST'
+        };
+      },
       searchExternalID: function(data, page) {
         return {
           url: '/api/v2/search.json?page=' + page + '&per_page=50&query=type:ticket+external_id:'+ data,
@@ -120,6 +127,43 @@
       createResult: this.createResultsData
     }); 
   },
+  autocompleteRequesterEmail: function(){
+    var self = this;
+    // bypass this.form to bind the autocomplete.
+    this.$('#userEmail').autocomplete({
+      minLength: 3,
+      source: function(request, response) {
+        self.ajax('autocompleteRequester', request.term).done(function(data){
+          response(_.map(data.users, function(user){
+            return {"label": user.name, "value": user.email};
+          }));
+        });
+      },
+      change: function (event, ui){
+        if(_.isNull(ui.item)) {
+          self.$('#userName').parent().show();
+          self.$('#userName').focus();
+        }
+      }
+    }, this);
+  },
+  autocompleteGroup: function(){
+    var self = this;
+    // bypass this.form to bind the autocomplete.
+    this.$('#zendeskGroup').autocomplete({
+      minLength: 3,
+      source: this.groupDrop,
+      focus: function( event, ui ) {
+        console.log(ui);
+        self.$( "#zendeskGroup" ).val( ui.item.label );
+        return false;
+      },
+      select: function(event, ui) {
+         self.$( "#zendeskSelect" ).val( ui.item.value );
+         return false;
+      }
+    }, this);
+  },
   createTicketValues: function() {
     var ticket = this.ticket();
     var groupSelected = [];
@@ -132,11 +176,13 @@
     groupSelected.forEach(function (group) {
       var rootTicket = {};
           rootTicket.ticket = {};
-          rootTicket.ticket.subject = this.$('#userSub').val() + ' child ticket of ' + ticket.id();
+          rootTicket.ticket.subject = this.$('#userSub').val();
           rootTicket.ticket.comment = {};
           rootTicket.ticket.comment.value = this.$('#ticketDesc').val();
           rootTicket.ticket.requester = {};
-          rootTicket.ticket.requester.name = this.$('#userName').val();
+          if(this.$('#userName').val() !== '') {
+            rootTicket.ticket.requester.name = this.$('#userName').val();
+          }
           rootTicket.ticket.requester.email = this.$('#userEmail').val();
           rootTicket.ticket.group_id = group;
           rootTicket.ticket.external_id = 'Project-' + ticket.id();
@@ -153,13 +199,24 @@
     
   },
   switchToReqester: function() {
+    var newSubject = this.ticket().subject();
+    if (this.prependSubject) {
+      newSubject = 'Project-' + this.ticket().id() + ' ' + newSubject; 
+    }
+    if (this.appendSubject) {
+      newSubject = newSubject + ' Project-' + this.ticket().id();
+    }
     this.switchTo('requester', {
-      name: this.currentUser().name(),
       email:  this.currentUser().email(),
 			groups: this.groupDrop,
-      subject: this.ticket().subject() + ' child ticket of ' + this.ticket().id(),
+      subject: newSubject,
       desc:  this.ticket().description()
     });
+    this.$('button.displayList').show();
+    this.$('button.displayForm').hide();
+    this.$('button.displayMultiCreate').show();
+    this.autocompleteRequesterEmail();
+    this.autocompleteGroup();
   },
   getProjectData: function(data) {
     if (data.firstLoad) {
@@ -168,6 +225,9 @@
       //get all the agents in the system V2 API
       this.getAgentData(1);
     }
+    this.prependSubject = this.settings.prependSubject;
+    this.appendSubject = this.settings.appendSubject;
+    console.log(this.appendSubject);
     //get the exteranl API on the currently viewed ticket
     this.ajax('getExternalID', this.ticket().id());
     //get the value of the Project ticket field
@@ -199,7 +259,7 @@
   listProjects: function(data){
 		this.ticketList = [];
     var nextPage = 1;
-    objectIteration(data.results, buildTicketList, this);
+    _.each(data.results, buildTicketList, this);
     if (data.next_page !== null){
       nextPage = nextPage + 1;
       this.getProjectSearch(data.results.external_id, nextPage);
@@ -209,6 +269,9 @@
     });
     //hide the remove button in the template if not child ticket
     this.$('button.removeTicket').hide();
+    this.$('button.displayList').hide();
+    this.$('button.displayForm').show();
+    this.$('button.displayMultiCreate').show();
     //if the current ticket is a child hide the create buttons in the template and show the remove
     if (_.indexOf(this.ticket().tags(), 'project_child') !== -1) {
       this.$('button.displayForm').hide();
@@ -223,7 +286,7 @@
   },
   processGroups: function(data) {
     var nextPage = 1;
-    objectIteration(data.groups, buildGroupList, this);
+    _.each(data.groups, buildGroupList, this);
     if (data.next_page !== null){
       nextPage = nextPage + 1;
       this.getGroupsData(nextPage);
@@ -235,7 +298,7 @@
   },
 	processAgents: function(data) {
     var nextPage = 1;
-    objectIteration(data.users, buildAgentList, this);
+    _.each(data.users, buildAgentList, this);
     if (data.next_page !== null){
       nextPage = nextPage + 1;
       this.getAgentData(nextPage);
@@ -254,12 +317,16 @@
 	},
   switchToBulk: function() {
     this.switchTo('multicreate', {
-      name: this.currentUser().name(),
       email:  this.currentUser().email(),
 			groups: this.groupDrop,
       subject: this.ticket().subject() + ' child ticket of ' + this.ticket().id(),
       desc:  this.ticket().description()
     });
+    this.$('button.displayList').show();
+    this.$('button.displayForm').show();
+    this.$('button.displayMultiCreate').hide();
+    this.autocompleteRequesterEmail();
+    this.autocompleteGroup();
   },
   createBulkTickets: function (){
     this.createTicketValues();

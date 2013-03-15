@@ -1,10 +1,10 @@
 <head>
 	 <h3>{{setting "name"}}</h3>
 </head>
-  <button class='displayList ember-view btn'>Ticket List</button>
+  <button class='displayList ember-view btn'>Project List</button>
 	<button class='displayForm ember-view btn'>Single Ticket</button>
   <button class='displayMultiCreate ember-view btn'>Create Bulk</button>
-  <button class='displayUpdate ember-view btn'>Update</button>
+  <button class='displayUpdate ember-view btn'>Add existing</button>
   <button class='removeTicket ember-view btn'>Remove</button>
 <section data-main />
 <footer>

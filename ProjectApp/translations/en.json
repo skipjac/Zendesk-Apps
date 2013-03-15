@@ -4,8 +4,15 @@
       "Custom_Field_ID" : {
         "label": "Custom Field ID",
         "helpText": "You can find the Custom Field ID on the ticket field edit page"
+      }, 
+      "prependSubject": {
+        "label": "Prepend Subject Line",
+        "helpText": "Prepend the subject line of the children tickest with the project ID"
+      },
+      "appendSubject": {
+        "label": "Append Subject Line", 
+        "helpText": "Append the the subject line of the children tickest with the project ID"
       }
-      
       },
     "description":  "Create Children tickets that all link back to a parent ticket.",
     "name":         "Project Management"

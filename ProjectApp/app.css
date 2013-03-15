@@ -18,9 +18,15 @@
 	 box-shadow: inset 0 0 2px 0 green;
   }
   ul, li {
-     list-style-type: none;
+    list-style-type: none;
   }
   
   p.parent {
     box-shadow: inset 0 0 5px 0 green;
+  }
+  .ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
   }

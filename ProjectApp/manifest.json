@@ -7,7 +7,14 @@
        "name": "Custom_Field_ID",
        "type": "text",
        "required": true  
-       }],
+       },{
+        "name": "prependSubject",
+        "type": "checkbox"
+       },{
+        "name": "appendSubject", 
+        "type": "checkbox"
+       }
+       ],
   "frameworkVersion": "0.5",
 	"location":"ticket_sidebar",
    "defaultLocale": "en",

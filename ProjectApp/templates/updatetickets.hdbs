@@ -1,13 +1,13 @@
 <section data-main>
 <div id='createtheticket'>
 	<ol>
-		<li>
+		<li  class="_tooltip" data-title="Enter a list of ticket id's separated with commas">
 		    <label for="listofIDs">Ticket ID's</label>
 				 <!-- <span STYLE="color: green; font-size: 10pt">Required</span> -->
 		     <input required placeholder="List of ticket ID's" type="text" name="listofIDs" id="listofIDs" style="width: 196px" value=""/>
 		</li>
     <li>
-      <button class='updateticket'>Update Tickets</button>
+      <button class='updateticket ember-view btn'>Add Tickets</button>
       </li>
     </ol>
     </div>
