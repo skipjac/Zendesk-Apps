@@ -58,15 +58,17 @@
           services.notify(this.I18n.t('global.error.data'), 'error');
         }
     },
-    objectAt: function(path) {
-      return _.inject( path.split('.'), function(self, segment) {
-        console.log(self);
-        if (self == null) { return false; }
-        return self[segment];
+    safeGetPath: function(propertyPath) {
+      return _.inject( propertyPath.split('.'), function(context, segment) {
+        if (context == null) { return context; }
+        var obj = context[segment];
+        if ( _.isFunction(obj) ) { obj = obj.call(context); }
+        return obj;
       }, this);
     },
     validateRequiredProperty: function(propertyPath) {
-      return this.objectAt(propertyPath) != null;
+      var value = this.safeGetPath(propertyPath);
+      return value != null && value !== '' && value !== 'no';
     }
   };
 }());
