@@ -18,14 +18,17 @@
           };
         }
     },
-    init: function(){
+    init: function(data){
+      if(!data.firstLoad){
+        return;
+      }
       this.allRequiredPropertiesExist();
     },
     getUserData: function() {
       this.ajax( 'fullUserData', this.ticket().requester().id() );
     },
     handleUserResults: function(data) {
-      var lastestFive = _.first(data.tickets, 5).sort(function(a,b) { 
+      var lastestFive = _.first(data.tickets, 5).sort(function(a,b) {
         var aID = a.id;
         var bID = b.id;
         return (aID === bID) ? 0 : (aID < bID) ? 1 : -1;
