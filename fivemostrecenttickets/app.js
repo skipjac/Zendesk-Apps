@@ -7,9 +7,6 @@
         'fullUserData.done': 'handleUserResults',
         'requiredProperties.ready': 'getUserData'
     },
-    requiredProperties : [
-        'ticket.requester.email'
-    ],
     requests: {
         fullUserData: function(userID) {
           return {
@@ -22,6 +19,9 @@
       if(!data.firstLoad){
         return;
       }
+      this.requiredProperties = [
+        'ticket.requester.id'
+      ];
       this.allRequiredPropertiesExist();
     },
     getUserData: function() {
