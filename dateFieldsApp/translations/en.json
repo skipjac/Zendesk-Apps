@@ -1,0 +1,20 @@
+{
+  "app": {
+    "description":  "Play the famous zen tunes in your help desk.",
+    "name":         "Buddha Machine",
+    "parameters" : {
+     "fieldMap" : {
+      "label": "Field mapping",
+      "helpText": "Place the ID's of ticket fields you wish to switch to a date"
+     },
+     "hideFields": {
+      "label": "Hide Date Fields",
+      "helpText": "By default the date fields are not editable, enable this to also hide them"
+     }
+   }
+  },
+  "errors": {
+    "invalid_time": "Error: Time entry does not seem to be valid",
+    "data": "Ticket data could not be read."
+  }
+}

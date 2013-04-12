@@ -1,0 +1,21 @@
+{
+  "name": "Date fields",
+  "author": {
+    "name": "Skip Moore",
+    "email": "services@zendesk.com"
+  },
+  "parameters": [{
+       "name": "fieldMap",
+       "type": "multiline",
+       "required": true 
+       },
+       {
+      "name": "hideFields",
+      "type": "checkbox",
+      "required": false
+    }],
+  "defaultLocale": "en",
+  "private": true,
+  "location": "ticket_sidebar",
+  "frameworkVersion": "0.5"
+}

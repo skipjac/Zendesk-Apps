@@ -1,0 +1,5 @@
+
+{{#each publicComments}}
+  <label for="{{this.id}}">{{this.title}}</label>
+  <input type="text" name="{{this.id}}" id="{{this.id}}" style="width: 196px" value=""/>
+{{/each}}
