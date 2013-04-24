@@ -7,11 +7,11 @@
       }, 
       "prependSubject": {
         "label": "Prepend Subject Line",
-        "helpText": "Prepend the subject line of the children tickets with the project ID"
+        "helpText": "Prepend the subject line of the children tickest with the project ID"
       },
       "appendSubject": {
         "label": "Append Subject Line", 
-        "helpText": "Append the the subject line of the children tickets with the project ID"
+        "helpText": "Append the the subject line of the children tickest with the project ID"
       }
       },
     "description":  "Create Children tickets that all link back to a parent ticket.",

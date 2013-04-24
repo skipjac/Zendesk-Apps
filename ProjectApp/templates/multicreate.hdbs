@@ -25,7 +25,7 @@
 			</li>
 			
 			<li>
-        <label>Description<textarea required="required" rows="10" name="ticketDesc" id="ticketDesc" style="width: 196px" placeholder="Please Describe the issue">{{desc}}></textarea></label>  
+        <label>Description<textarea required="required" rows="10" name="ticketDesc" id="ticketDesc" style="width: 196px" placeholder="Please Describe the issue">{{desc}}</textarea></label>  
 			</li>
 		<li>
 	   <button class='submitSpoke ember-view btn'>Create Bulk Tickets</button>

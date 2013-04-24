@@ -42,8 +42,11 @@
     createResultsData: [],
     isSolvable : true,
     whatIsSolved: ['closed','solved'],
+    currAttempt : 0,
+    MAX_ATTEMPTS : 20,
     events: {
-    'app.activated': 'getProjectData',
+    'app.activated': 'init',
+    'requiredProperties.ready': 'getProjectData',
     'getExternalID.done': 'findProjects',
     'searchExternalID.done': function(data) {
        this.listProjects(data || {});
@@ -119,6 +122,10 @@
 				};
 			}
     }, //end requests
+  init: function() {
+      this.requiredProperties = ['ticket.requester.email', 'custom_field_' + this.settings.Custom_Field_ID];
+      this.allRequiredPropertiesExist();
+    },
   processData: function(data, response, responseText) {
     this.ticket().tags().add(['project_parent', 'project_'+this.ticket().id()]);
     this.ticket().customField('custom_field_' + displayProjectName.call(this) +'', 'Project-' + this.ticket().id());
@@ -187,8 +194,8 @@
           rootTicket.ticket.group_id = group;
           rootTicket.ticket.external_id = 'Project-' + ticket.id();
           rootTicket.ticket.tags = ['project_child', 'project_'+ ticket.id()];
-          rootTicket.ticket.fields = {};
-          rootTicket.ticket.fields[ displayProjectName.call(this) ] = 'Project-' + ticket.id();
+          rootTicket.ticket.custom_fields = {};
+          rootTicket.ticket.custom_fields[ displayProjectName.call(this) ] = 'Project-' + ticket.id();
           var childCall = JSON.stringify(rootTicket);
           this.ajax('createTicket', childCall);
         }, this);
@@ -219,15 +226,12 @@
     this.autocompleteGroup();
   },
   getProjectData: function(data) {
-    if (data.firstLoad) {
       //get all the groups   
       this.getGroupsData(1);
       //get all the agents in the system V2 API
       this.getAgentData(1);
-    }
     this.prependSubject = this.settings.prependSubject;
     this.appendSubject = this.settings.appendSubject;
-    console.log(this.appendSubject);
     //get the exteranl API on the currently viewed ticket
     this.ajax('getExternalID', this.ticket().id());
     //get the value of the Project ticket field
@@ -319,7 +323,7 @@
     this.switchTo('multicreate', {
       email:  this.currentUser().email(),
 			groups: this.groupDrop,
-      subject: this.ticket().subject() + ' child ticket of ' + this.ticket().id(),
+      subject: this.ticket().subject(),
       desc:  this.ticket().description()
     });
     this.$('button.displayList').show();
@@ -379,17 +383,17 @@
     updateTicket.ticket.fields = {};
     if (!isParent && type === 'add') {
       ticketTags.push(linking, 'project_'+ this.ticket().id());
-      updateTicket.ticket.fields[ displayProjectName.call(this) ] = 'Project-' + this.ticket().id(); 
+      updateTicket.ticket.custom_fields[ displayProjectName.call(this) ] = 'Project-' + this.ticket().id(); 
       updateTicket.ticket.external_id = 'Project-' + this.ticket().id();
     } else if (!isParent && type === 'remove') {
       var projectTag = data.ticket.external_id.replace(/-/i, '_').toLowerCase();
       ticketTags.splice(_.indexOf(tags, "project_child"),1);
       ticketTags.splice(_.indexOf(tags, projectTag),1);
-      updateTicket.ticket.fields[ displayProjectName.call(this) ] = ''; 
+      updateTicket.ticket.custom_fields[ displayProjectName.call(this) ] = ''; 
       updateTicket.ticket.external_id = '';
     } else {
       ticketTags.push(linking, 'project_'+ this.ticket().id());
-      updateTicket.ticket.fields[ displayProjectName.call(this) ] = 'Project-' + this.ticket().id(); 
+      updateTicket.ticket.custom_fields[ displayProjectName.call(this) ] = 'Project-' + this.ticket().id(); 
       updateTicket.ticket.external_id = 'Project-' + this.ticket().id();
     }        
     updateTicket.ticket.tags = ticketTags;
@@ -398,7 +402,46 @@
        this.ajax('putExternalID', thisTicket, ticketUpdateID);
     }
    
-  }
+  },
+  // HELPER FUNCTIONS HELPER FUNCTIONS HELPER FUNCTIONS HELPER FUNCTIONS
+    allRequiredPropertiesExist: function() {
+      if (this.requiredProperties.length > 0) {
+        var valid = this.validateRequiredProperty(this.requiredProperties[0]);
+        // prop is valid, remove from array
+        if (valid) {
+          this.requiredProperties.shift();
+        }
+ 
+        if (this.requiredProperties.length > 0 && this.currAttempt < this.MAX_ATTEMPTS) {
+          if (!valid) {
+            ++this.currAttempt;
+          }
+ 
+          _.delay(_.bind(this.allRequiredPropertiesExist, this), 100);
+          return;
+        }
+      }
+      if (this.currAttempt < this.MAX_ATTEMPTS) {
+        this.trigger('requiredProperties.ready');
+      } else {
+        this.services.notify(this.I18n.t('errors.data'));
+      }
+    },
+ 
+    safeGetPath: function(propertyPath) {
+      return _.inject( propertyPath.split('.'), function(context, segment) {
+        if (context == null) { return context; }
+        var obj = context[segment];
+        if ( _.isFunction(obj) ) { obj = obj.call(context);}
+        return obj;
+      }, this);
+    },
+  
+    validateRequiredProperty: function(propertyPath) {
+      if (propertyPath.match(/custom_field/)) { return !!this.ticketFields(propertyPath); }
+      var value = this.safeGetPath(propertyPath);
+      return value != null && value !== '' && value !== 'no';
+    }
 }; //end first return
 }());
 
