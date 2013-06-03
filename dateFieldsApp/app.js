@@ -49,12 +49,18 @@
         } else {
           this.ticketFields('custom_field_' + x.id).disable();
         }
-        this.$('#'+x.id).val(this.ticket().customField('custom_field_' + x.id)).datepicker();
+        var dateTimeString = this.ticket().customField('custom_field_' + x.id);
+        if (dateTimeString) {
+          dateTimeString = dateTimeString.split(" ");
+          this.$('._date[data-date-id="'+ x.id +'"]').val(dateTimeString[0]).datepicker({ dateFormat: "yy/mm/dd" });
+        } else {
+          this.$('._date[data-date-id="'+ x.id +'"]').val("").datepicker({ dateFormat: "yy/mm/dd" });
+        }
       }, this);
     },
     updateTicketFields: function(){
       _.each(this.properties, function(x){
-        this.ticket().customField('custom_field_' + x, '' + this.$('#'+x).val() +'');
+        this.ticket().customField('custom_field_' + x, '' + this.$('._date[data-date-id="'+ x +'"]').val() +'');
       }, this);
     },
     // HELPER FUNCTIONS HELPER FUNCTIONS HELPER FUNCTIONS HELPER FUNCTIONS
