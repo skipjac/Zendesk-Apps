@@ -1,6 +1,6 @@
 Deprecated 
 ==========
-Please use [https://github.com/zendesk/conditional_fields_app]
+Please use [https://github.com/zendesklabs/conditional_fields_app]
 
 
 Conditional Fields
