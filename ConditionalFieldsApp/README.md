@@ -1,3 +1,8 @@
+Deprecated 
+==========
+Please use [https://github.com/zendesklabs/conditional_fields_app]
+
+
 Conditional Fields
 ==========
 
