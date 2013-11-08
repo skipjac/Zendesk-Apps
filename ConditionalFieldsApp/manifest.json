@@ -1,7 +1,7 @@
 {
     "author": {
-		"name" :"Skip Moore",
-	    "email": "skip.moore@zendesk.com"
+		"name" :"Zendesk Services",
+	    "email": "services@zendesk.com"
      },
     "parameters": [{
        "name": "fieldMap",
@@ -9,7 +9,7 @@
        "required": true 
        }],
 	"frameworkVersion": "0.5",
-	"location":"ticket_sidebar",
+	"location": ["ticket_sidebar", "new_ticket_sidebar"],
     "defaultLocale": "en",
     "private": true,
     "singleInstall": true

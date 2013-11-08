@@ -5,15 +5,13 @@
      "parameters" : {
      "fieldMap" : {
      	"label": "Field mapping",
-     	"helpText": "Build a JSON object. The object should be in the format option_value: [array of field ids' to act on] for example: {'cat':[21875871,21865183,21745801], 'dog':[22103126,21613267], 'dolphin': [280865, 20295661], 'the_fish': []} "
+     	"helpText": "Build a JSON object. The object should be in the format option_value: [array of field ids' to act on] for example: {'custom_field_21631456': {'cat':['custom_field_21875871','custom_field_21865183','custom_field_21745801'], 'dog':['custom_field_22103126','custom_field_21613267'], 'dolphin': ['custom_field_280865', 'custom_field_20295661'], 'the_fish': ['custom_field_279466']}, 'custom_field_279466':{'asdf':['custom_field_21651413'], 'xfer_to_a': [], 'fire_to_new_page': []}} "
      }
  }
   },
-  "global": {
-		"error": {
+		"errors": {
 			"title"     : "An error occurred",
 			"message"   : "Please try the previous action again.",
 			"data"      : "Ticket data could not be read."
 		}
-	}
 }

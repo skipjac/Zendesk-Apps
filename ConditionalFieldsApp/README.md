@@ -1,28 +1,14 @@
 Conditional Fields
 ==========
 
-This New Zendesk app will show and hide fields based on the value of a dropdown. This app requires some basic knowledge of javascipt and JSON to configure. 
+This New Zendesk app will show and hide fields based on the value of a dropdown and clear out values from hidden fields. This app requires some basic knowledge of javascipt and JSON to configure. 
 
-The configuration is a two step process where you have to edit the app.js file to configure your watched fields in the events object. Also adding varibles in capture the value of the watched fields. Watched fields are the fields that when a option is selected other fields will either be hidden or become visible. 
-
-In app.js you will see a javascript object called events:
+The JSON object for the settings page needs to look like: 
 
 ``` javascript
-    events: {
-      'app.activated':  'init',
-      'requiredProperties.ready': 'toggleFields',
-      'ticket.custom_field_21631456.changed': 'toggleFields'
-    }
+{"custom_field_21631456": {"cat":["custom_field_21875871","custom_field_21865183","custom_field_21745801"], "dog":["custom_field_22103126","custom_field_21613267"], "dolphin": ["custom_field_280865", "custom_field_20295661"], "the_fish": ["custom_field_279466"]}, "custom_field_279466":{"asdf":["custom_field_21651413"], "xfer_to_a": [], "fire_to_new_page": []}}
 ```
 
-The key ``` 'ticket.custom_field_21631456.changed' ``` is a watched field. For each watched field you need to add a new key and action. ``` 'toggleFields' ``` is the action to take when field 21631456 is changed, in this case if fires a function. In the function we get the value of 21631456 ```var conditionValue = this.ticket().customField('custom_field_21631456'); ``` and using the JSON that was set in the settings page we get the array of fields to act upon. 
-
-The JSON object needs to look like: 
-
-``` javascript
-{"cat":[21875871,21865183,21745801], "dog":[22103126,21613267], "dolphin": [280865, 20295661], "the_fish": []}
-```
-
-Each key is a option value in the drop down field that is being watched, in this case 21631456. Each key needs an array of ticket field ID's to show when that value is selected. Please read up on the formating of JSON objects at [Introducing JSON](http://json.org/) . 
+Each key is a option value in the drop down field that is being watched, in this case 21631456. Each key needs an array of ticket field ID's to show when that value is selected. Please read up on the formating of JSON objects at [Introducing JSON](http://json.org/)
 
 ![setttings page](http://skipjack.info/wp-content/gallery/tech/conditionalfields.png "Settings Page Example")
