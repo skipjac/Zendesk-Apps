@@ -99,6 +99,4 @@
       if(_.contains(watchFields, e.target.name)){
         toggleFields(allFieldsToToggle);
       }
-           
-    });
-  }());
+       
