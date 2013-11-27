@@ -72,7 +72,7 @@
       var fieldsToShow = [];
       //build the show fields object
       watchFields.forEach(function(watchedID){
-        var selectionval = $('input[name="' + watchedID +'"]:checked').val();
+        var selectionval = $('input[name="' + watchedID + '"]').val();
         count = count + 1;
         if (_.indexOf(thereAreNulls, selectionval) === -1) {
           var fields = _.intersection(availFields, fieldMap[selectionval]);
@@ -83,7 +83,7 @@
           //remove any fields that are that are in a hidden watched field
           somethingUsful.forEach(function(x){
             if(!_.contains(fieldsToShow, x)){
-              var y = $('input[name="' + x +'"]:checked').val();
+              var y = $('input[name="' + x + '"]').val();
               fieldsToShow = _.difference(fieldsToShow, fieldMap[y]);
             }
           });
@@ -95,8 +95,10 @@
     //call set fields on page load
     setFields();
     // watch the fields for changes
-    $('.form-field').change(function(e){
+    $('input').change(function(e){
       if(_.contains(watchFields, e.target.name)){
         toggleFields(allFieldsToToggle);
       }
-       
+           
+    });
+  }());
