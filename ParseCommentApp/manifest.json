@@ -3,7 +3,7 @@
 		"name" :"Skip Moore",
 	    "email": "skip.moore@zendesk.com"
      },
-	 "frameworkVersion": "0.5",
+	 "frameworkVersion": "1.0",
 	"location":"ticket_sidebar",
    "defaultLocale": "en",
    "private": true,
