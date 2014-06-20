@@ -1,14 +1,8 @@
-# App name
+# RequiredFieldsApp
 
-[brief description of the app]
+Enforce custom fields to be filled out by agents on ticket submission or update. 
 
-### The following information is displayed:
 
-* info1
-* info2
-* info3
+Pull requests are welcome.
 
-Please submit bug reports to [Insert Link](). Pull requests are welcome.
 
-### Screenshot(s):
-[put your screenshots down here.]
