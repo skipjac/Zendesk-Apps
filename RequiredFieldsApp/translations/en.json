@@ -1,9 +1,61 @@
 {
   "app": {
-    "description":  "Agent required fields on update",
-    "name":         "Required fields"
+    "package": "Required Fields",
+    "description": {
+      "value": "Requiring ticket fields on ticket creation",
+      "title": "required fields"
     },
-    "fields": {
-      "more": "There are fields still required to be filled out before submit"
+    "name": {
+      "value": "required fields",
+      "title": "required fields"
     }
+  },
+  "parameters": {
+    "fieldIDs": {
+      "label":{
+        "value": "place a comma separted list of ticket field ids",
+        "title": "Ticket Field ID's"
+      }
+    }
+    },
+  "loading": {
+    "value": "Welcome to required fields",
+    "title": "required fields"
+  },
+
+  "fetch": {
+    "done": {
+      "value": "Good",
+      "title": "fetch success"
+    },
+    "fail": {
+      "value": "failed to fecth information from the server",
+      "title": "fetch failure"
+    }
+  },
+
+  "id": {
+    "value": "ID",
+    "title": "user id"
+  },
+
+  "email": {
+    "value": "Email",
+    "title": "user email"
+  },
+
+  "name": {
+    "value": "Name",
+    "title": "user name"
+  },
+
+  "role": {
+    "value": "Role",
+    "title": "user role"
+  },
+
+  "groups": {
+    "value": "Groups",
+    "title": "user groups"
+  }
 }
