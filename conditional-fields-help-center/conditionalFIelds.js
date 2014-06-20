@@ -75,51 +75,39 @@
         toggleFields(allFieldsToToggle);
       };
     //call the show and hide based on the watched fields selected values
-    var toggleFields = function(allFieldsToToggle) {
-        var thereAreNulls = [undefined, null, '', '-'];
-        var count = 0;
-        var fieldsTo = [];
-        var fieldsToShow = [];
-        //build the show fields object
-
-        watchFields.forEach(function(watchedID) {
-
-          var selectionval = $('input[name="' + watchedID + '"]').val();
-          //console.log("selectionval ", selectionval);
-          //var selectionval = $('input[name="' + watchedID + '"]:checked').val();
-
-          count = count + 1;
-          if (_.indexOf(thereAreNulls, selectionval) === -1) {
-            var fields = _.intersection(availFields, fieldMap[selectionval]);
-            fieldsToShow = _.union(fieldsToShow, fields);
-            //console.log("fields ", fields, "fieldsToShow", fieldsToShow );
-
-          }
-          if (count === watchFields.length) {
-
-            var somethingUsful = _.intersection(allFieldsToToggle, watchFields);
-            //console.log("somethingUsful ", somethingUsful);
-            //remove any fields that are that are in a hidden watched field
-            somethingUsful.forEach(function(x) {
-              if (!_.contains(fieldsToShow, x)) {
-                //var y = $('input[name="' + x + '"]:checked').val();
-                var y = $('input[name="' + x + '"]').val();
-                //console.log("y ", y);
-                fieldsToShow = _.difference(fieldsToShow, fieldMap[y]);
-              }
-            });
-            show(fieldsToShow);
-            hide(allFieldsToToggle, fieldsToShow);
-          }
-        }, this);
-      };
+    var toggleFields = function(allFieldsToToggle){
+      var thereAreNulls = [undefined, null, '', '-'];
+      var count = 0;
+      var fieldsTo = [];
+      var fieldsToShow = [];
+      //build the show fields object
+      watchFields.forEach(function(watchedID){
+        var selectionval = $('input[name="' + watchedID + '"]').val();
+        count = count + 1;
+        if (_.indexOf(thereAreNulls, selectionval) === -1) {
+          var fields = _.intersection(availFields, fieldMap[selectionval]);
+          fieldsToShow = _.union(fieldsToShow, fields);
+        }
+        if( count === watchFields.length ) {
+          var somethingUsful = _.intersection(allFieldsToToggle, watchFields);
+          //remove any fields that are that are in a hidden watched field
+          somethingUsful.forEach(function(x){
+            if(!_.contains(fieldsToShow, x)){
+              var y = $('input[name="' + x + '"]').val();
+              fieldsToShow = _.difference(fieldsToShow, fieldMap[y]);
+            }
+          });
+          show(fieldsToShow);
+          hide(allFieldsToToggle, fieldsToShow);
+        }
+      }, this);
+    };
     //call set fields on page load
     setFields();
     // watch the fields for changes
     $('input').change(function(e){
-      //console.log("in change", watchFields, e.target.name, allFieldsToToggle);
-      if (_.contains(watchFields, e.target.name)) {
-        //console.log("true");
+
+      if(_.contains(watchFields, e.target.name)){
         toggleFields(allFieldsToToggle);
       }
     });
